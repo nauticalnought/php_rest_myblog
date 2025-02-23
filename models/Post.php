@@ -21,12 +21,20 @@
     // Get Posts
     public function read() {
       // Create query
-      $query = 'SELECT c.name as category_name, p.id, p.category_id, p.title, p.body, p.author, p.created_at
-                                FROM ' . $this->table . ' p
-                                LEFT JOIN
-                                  categories c ON p.category_id = c.id
-                                ORDER BY
-                                  p.created_at DESC';
+      $query = 'SELECT
+            c.name as category_name,
+            p.id,
+            p.category_id,
+            p.title,
+            p.body,
+            p.author,
+            p.created_at
+          FROM
+            ' . $this->table . ' p
+          LEFT JOIN
+            categories c ON p.category_id = c.id
+          ORDER BY
+            p.created_at DESC';
       
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -40,13 +48,21 @@
     // Get Single Post
     public function read_single() {
           // Create query
-          $query = 'SELECT c.name as category_name, p.id, p.category_id, p.title, p.body, p.author, p.created_at
-                                    FROM ' . $this->table . ' p
-                                    LEFT JOIN
-                                      categories c ON p.category_id = c.id
-                                    WHERE
-                                      p.id = ?
-                                    LIMIT 0,1';
+          $query = 'SELECT
+                c.name as category_name,
+                p.id,
+                p.category_id,
+                p.title,
+                p.body,
+                p.author,
+                p.created_at
+              FROM
+                ' . $this->table . ' p
+              LEFT JOIN
+                categories c ON p.category_id = c.id
+              WHERE
+                p.id = ?
+                LIMIT 0,1';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -70,7 +86,12 @@
     // Create Post
     public function create() {
           // Create query
-          $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
+          $query = 'INSERT INTO '
+                . $this->table .
+                ' SET title = :title,
+                body = :body,
+                author = :author,
+                category_id = :category_id';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -101,9 +122,14 @@
     // Update Post
     public function update() {
           // Create query
-          $query = 'UPDATE ' . $this->table . '
-                                SET title = :title, body = :body, author = :author, category_id = :category_id
-                                WHERE id = :id';
+          $query = 'UPDATE '
+                . $this->table . '
+                SET title = :title,
+                body = :body,
+                author = :author,
+                category_id = :category_id
+                WHERE
+                  id = :id';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
