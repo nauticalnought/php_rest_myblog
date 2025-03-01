@@ -1,4 +1,4 @@
-CREATE TABLE `categories` (
+CREATE TABLE if NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -12,7 +12,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (4, 'Entertainment'),
 (5, 'Books');
 
-CREATE TABLE `posts` (
+CREATE TABLE if NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
